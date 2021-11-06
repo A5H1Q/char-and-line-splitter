@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="UTF-8">
+    <title>SPLIT</title>
+    <link rel='stylesheet' href='css/styles.css'>
+<!-- Page SEO -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Line-breaker at every 100th line (Default), At each line-break, Input is splitted Among textareas">
+    <meta name="keywords" content="Line-break,Ron,Help">
+    <meta name="author" content="Ashiqsaleem">
+
+<!-- PAGE FONT Settings -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+
+
+<!-- Page Body -->
+  <body class="gradient" style="font-family: 'Source Sans Pro', sans-serif;">
+<!-- Header Bar -->
+    <nav id="header" class="shadow fixed w-full z-30 bg-white">
+      <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
+        <div class="pl-4 flex items-center">
+          <a class="toggleColour text-cpep no-underline hover:no-underline font-bold text-2xl lg:text-4xl"  href="#"><i class="fa fa-cut icon"></i> SPLIT</a>
+        </div>
+<!-- Responsive Hiddden Mobile Bread-crumb -->
+
+        <div class="block lg:hidden pr-4">
+          <button id="nav-toggle" class="flex items-center px-3 py-2 rounded text-white gradient appearance-none focus:outline-none">
+            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <title>Menu</title>
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+            </svg>
+          </button>
+        </div>
+
+<!-- Main Menu Bar -->
+        <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
+          <ul class="list-reset lg:flex justify-end flex-1 items-center">
+            <li class="mr-3">
+              <a class="inline-block text-black no-underline py-2 px-4" href="index.html">Line</a>
+            </li>
+            <li class="mr-3">
+              <a class="inline-block py-2 px-4 text-cpep font-bold activ no-underline" href="#">Character</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr class=" border-gray-100 opacity-25 my-0 py-0" />
+    </nav>
+
+<!--  Page Contents -->
+    <section class="bg-white  py-8">
+      <div class="container mx-auto px-2 pt-4 text-gray-800 my-14">
+        <div class="flex flex-col sm:flex-row justify-center ipad pt-12">
+          <div class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-lg bg-white mt-4 sm:-mt-6 shadow-lg z-10">
+            <div class="bg-white rounded-lg  overflow-hidden">
+              <div class="w-full p-8 text-3xl font-bold text-center">Splitter</div>
+              <div class="h-1 w-full gradient my-0 py-0 rounded-t form"></div>
+              <div id="form" class="form">
+                <div class="form-control">
+                  <i class="fa fa-cut icon"></i> 
+                  <input type="number" id="cutter" value="100" required autocomplete="on" placeholder="Custom Limit">
+                </div>
+                <div class="form-control">
+                  <textarea id="breakme" autocomplete="off" required placeholder="Enter Charcters To Split"></textarea>
+                </div>
+                <button id="done" class="btn gradient" onclick="split()">SPLIT</button>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="w-5/6 p-10">
+              <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3"><br>Character splitter</h3>
+              <p class="text-gray-600 mb-8"><br>
+                Limit at every 100th Character (Default)<br>when limit Reaches, Input is splitted Among textareas.<br><br>Note: Certain Charcters such as <br><b>Whitespace</b> and <b>line-break</b> <br>won't be omitted when splitting
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<!-- Responsive Output Textarea -->
+<div id="FR" class="cards">
+
+</div>
+
+    <footer>
+      <div class="container mx-auto  px-8 my-12">
+        <div class="w-full flex flex-col md:flex-row">
+          <div class="flex-1">
+            <a class="text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl"  href="#"> 
+            SPLIT &nbsp;&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;v1.0
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+<script>
+// Voila !
+//Behold The Splitter Engine. LOL!
+var txt=document.getElementById("breakme");
+var nt;
+function split(){
+var ctr=document.getElementById("cutter").value;
+if(ctr > 0 && txt.value != "" && txt.value != " " ){
+var ct=0;
+document.getElementById("FR").innerHTML="";
+while(true){
+nt=parseInt(ct) + parseInt(ctr);
+document.getElementById("FR").innerHTML+="<div class='card'><textarea>"+txt.value.substring(ct,nt)+"</textarea></div>";
+ct=parseInt(ct) + parseInt(ctr);
+if(nt >= txt.value.length){break;}
+}
+document.getElementById("done").textContent="DONE";
+document.getElementById("done").style.background="#4CAF50";
+setTimeout(function(){
+document.getElementById("done").style.background="linear-gradient(90deg, #E91E63 0%, #3F51B5 100%)";
+document.getElementById("done").textContent="SPLIT";
+},1000);
+}
+}
+
+</script>
+
+<script>
+
+//Script Section For Toggling Menu in Mobile View
+
+      var navMenuDiv = document.getElementById("nav-content");
+      var navMenu = document.getElementById("nav-toggle");
+      
+      document.onclick = check;
+      function check(e){
+        var target = (e && e.target) || (event && event.srcElement);
+        
+        //Nav Menu
+        if (!checkParent(target, navMenuDiv)) {
+      	// click NOT on the menu
+      	if (checkParent(target, navMenu)) {
+      	  // click on the link
+      	  if (navMenuDiv.classList.contains("hidden")) {
+      		navMenuDiv.classList.remove("hidden");
+      	  } else {navMenuDiv.classList.add("hidden");}
+      	} else {
+      	  // click both outside link and outside menu, hide menu
+      	  navMenuDiv.classList.add("hidden");
+      	}
+        }
+        
+      }
+      function checkParent(t, elm) {
+        while(t.parentNode) {
+      	if( t == elm ) {return true;}
+      	t = t.parentNode;
+        }
+        return false;
+      }
+    </script>
+  </body>
+</html>
